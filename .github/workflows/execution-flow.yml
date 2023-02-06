@@ -76,10 +76,10 @@ jobs:
       - name: Deploy
         run: echo "Deploying..."
   report:
-  if: failure()
-  runs-on: ubuntu-latest
-  steps:
-    - name: Output Info
-      run: |
-        echo "something went wrong"
-        echo "${{ github }}"
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output Info
+        run: |
+          echo "something went wrong"
+          echo "${{ github }}"
