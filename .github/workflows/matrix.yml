@@ -1,0 +1,21 @@
+name: Matrix Demo
+on: push
+jobs:
+  build:
+  # Running a build job with a matrix, which allows you to change the values for fields specified in the matrix
+  strategy:
+    matrix:
+      node-version: [12, 14, 16]
+      operating-system: [ubuntu-latest, windows-latest]
+    runs-on: ${{matrix.operating-system }} # this job will now trigger once for each value of the field specified in the matrix.
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }} # changes the value of node-version
+      - name: install dependencies
+        run: npm ci
+      - name: build project
+        run: npm run build
